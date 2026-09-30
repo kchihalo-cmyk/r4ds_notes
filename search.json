@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "chihalo’s R notebook",
     "section": "",
-    "text": "Preface\nThis book is my journey and record of learning R using R for Data Science (2nd edition) by Hadley and company.\nStarted these notes on 20 July 2026. They began as plain R scripts that I wrote for myself as I worked through the book, and I’ve turned them into this Quarto book or whatever!",
+    "text": "Preface\nThis book is my journey and record of learning R . Still ongoing. A labour of love and hate – mostly hate.\nStarted these notes on 20 July 2026, should have started sooner – I know!. They began as plain R scripts that I wrote for myself as I worked through the book, and I’ve turned them into this Quarto book or whatever!",
     "crumbs": [
       "Preface"
     ]
@@ -14,17 +14,17 @@
     "href": "index.html#whats-in-here",
     "title": "chihalo’s R notebook",
     "section": "What’s in here",
-    "text": "What’s in here\nSo far I’ve worked through:\n\n1  Data Visualisation: making plots with ggplot2\n2  Workflow: basics: the basics of writing R code\n3  Data transformation: filtering, sorting, and summarising data with dplyr\n4  Workflow: code style: writing tidy, readable code\n5  Data tidying: reshaping data with tidyr (still in progress)\n\nMore chapters will be added as I go.",
+    "text": "What’s in here\nThe work so far!:\n\n1  Data Visualisation: making plots with ggplot2\n2  Workflow: basics: the basics of writing R code\n3  Data transformation: filtering, sorting, and summarising data with dplyr\n4  Workflow: code style: writing tidy, readable code\n5  Data tidying: reshaping data with tidyr (still in progress)\n\nMore chapters will be added as I go.",
     "crumbs": [
       "Preface"
     ]
   },
   {
-    "objectID": "index.html#how-to-read-this-book",
-    "href": "index.html#how-to-read-this-book",
+    "objectID": "index.html#how-to-read-this-book.-is-it-even-a-book",
+    "href": "index.html#how-to-read-this-book.-is-it-even-a-book",
     "title": "chihalo’s R notebook",
-    "section": "How to read this book",
-    "text": "How to read this book\n\n\n\n\n\n\nNote\n\n\n\nThese are learning notes, not a textbook – take them with a the largest pinch of salt you ca find. They show my attempts, my mistakes, and what I worked out along the way, so expect some rough edges.\n\n\n\nEvery code chunk is real R code, and the output you see was produced when the book was built.\nSome code is shown but not run, for example code that only works in RStudio or installs packages.\nSome code fails on purpose, to show what a particular error looks like.\nThe exercises come from the R4DS book, and the answers are my own attempts. They may not be perfect, and corrections are welcome.",
+    "section": "How to read this book. Is it even a book?",
+    "text": "How to read this book. Is it even a book?\n\n\n\n\n\n\nNote\n\n\n\nThese are MY learning notes, not a textbook – take them with a the largest pinch of salt you ca find. They show my attempts, my mistakes, and what I worked out along the way, so expect some rough edges.\n\n\n\nEvery code chunk is real R code, and the output you see was produced.\nSome code fails on purpose, to show what a particular error looks like, you’ll see.\nThe exercises come from the R4DS book, and the answers are my own attempts. They are definitely not perfect, and corrections are NOT welcome. Write your own code bruh.",
     "crumbs": [
       "Preface"
     ]
@@ -34,7 +34,7 @@
     "href": "index.html#acknowledgements",
     "title": "chihalo’s R notebook",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\nAll credit belongs to R4DS 2e. Original book at is at r4ds.hadley.nz. One time yeah!",
+    "text": "Acknowledgements\nI’d like to thank me – you know who!",
     "crumbs": [
       "Preface"
     ]
