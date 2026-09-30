@@ -1,0 +1,661 @@
+---
+execute:
+  warning: false
+  message: false
+---
+
+# Data Visualisation {#sec-data-visualisation}
+
+My notes and practice for learning R with the R4DS (2nd edition) book. Started 20th July, 2026.
+
+## Introduction
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(palmerpenguins)
+library(nycflights13)
+library(ggthemes)
+library(Lahman)
+```
+
+## First steps
+
+Take a first look at the data.
+
+```{r}
+flights
+penguins
+glimpse(penguins)
+```
+
+```{r}
+#| eval: false
+View(penguins)
+?penguins
+```
+
+An empty plot: we only set the data and the mapping.
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = flipper_length_mm, y = body_mass_g))
+```
+
+Adding a geom. Note the `+` that connects the geom. **Every layer must be connected with a `+`.**
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+```
+
+Adding an aesthetic (colour by species):
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g, colour = species)
+) +
+  geom_point()
+```
+
+Adding another geom layer:
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g, colour = species)
+) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Adding an aesthetic to a specific geom. Note how `colour = species` is not in the **global** `aes()`, so there is one trend line instead of three.
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(mapping = aes(colour = species)) +
+  geom_smooth(method = "lm")
+```
+
+Mapping species to shape as well:
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(mapping = aes(colour = species, shape = species)) +
+  geom_smooth(method = "lm")
+```
+
+Improving the labels:
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(mapping = aes(colour = species, shape = species)) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Body Mass and Flipper length",
+    subtitle = "Dimensions for Adelie, Chinstrap and Gentoo",
+    x = "Flipper Length (mm)",
+    y = "Body Mass (g)",
+    color = "Species",
+    shape = "Species"
+  ) +
+  scale_color_colorblind()
+```
+
+### Exercises {.unnumbered}
+
+**1. How many rows are in `penguins`? How many columns?**
+
+```{r}
+nrow(penguins)
+ncol(penguins)
+```
+
+**2. What does the `bill_depth_mm` variable in the `penguins` data frame describe?**
+
+Read the help page with `?penguins` to find out.
+
+```{r}
+#| eval: false
+?penguins
+```
+
+**3. Make a scatterplot of `bill_depth_mm` vs. `bill_length_mm`. Describe the relationship between these two variables.**
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(mapping = aes(colour = species, shape = species)) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Bill Depth v Bill Length",
+    x = "Bill Length (mm)",
+    y = "Bill Depth (mm)",
+    colour = "Species",
+    shape = "Species"
+  ) +
+  scale_color_colorblind()
+```
+
+Overall, there is a negative relationship between the two variables, but within each species the relationship is positive.
+
+To show the positive correlation within species, move `colour = species` to the global `aes()` and add `se = FALSE` to remove the standard error shading:
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(color = species, x = bill_length_mm, y = bill_depth_mm)
+) +
+  geom_point(mapping = aes(shape = species)) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Bill Depth v Bill Length",
+    x = "Bill Length (mm)",
+    y = "Bill Depth (mm)",
+    colour = "Species",
+    shape = "Species"
+  ) +
+  scale_color_colorblind()
+```
+
+**4. What happens if you make a scatterplot of `species` vs. `bill_depth_mm`?**
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = species, y = bill_depth_mm)) +
+  geom_point(mapping = aes(colour = species, shape = species)) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Species v Bill Depth",
+    x = "Species",
+    y = "Bill Depth (mm)",
+    colour = "Species",
+    shape = "Species"
+  ) +
+  scale_color_colorblind()
+```
+
+**What might be a better choice of geom?**
+
+A violin plot is good because it shows the shape of the data distribution, so you can see where most values are concentrated. It is more informative than a boxplot, but you could also try the box.
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = species, y = bill_depth_mm)) +
+  geom_violin(mapping = aes(colour = species)) +
+  labs(
+    title = "Species v Bill Depth",
+    x = "Species",
+    y = "Bill Depth (mm)",
+    colour = "Species"
+  ) +
+  scale_color_colorblind()
+```
+
+Boxplot:
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = species, y = bill_depth_mm)) +
+  geom_boxplot(mapping = aes(colour = species)) +
+  labs(
+    title = "Species v Bill Depth",
+    x = "Species",
+    y = "Bill Depth (mm)",
+    colour = "Species"
+  ) +
+  scale_color_colorblind()
+```
+
+**5. Why does the following give an error? How would you fix it?**
+
+```{r}
+#| error: true
+ggplot(data = penguins) +
+  geom_point()
+```
+
+There is no mapping, so `geom_point()` has no `x` and `y` aesthetics to draw. The fix is to supply a mapping. With the variables I chose, `geom_point()` is not the best geom, so a boxplot or violin may be better.
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = island, y = flipper_length_mm)) +
+  geom_point(mapping = aes(color = species))
+```
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = island, y = flipper_length_mm)) +
+  geom_violin(mapping = aes(color = species))
+```
+
+**6. What does the `na.rm` argument do in `geom_point()`? What is the default value? Create a scatterplot where you successfully use this argument set to `TRUE`.**
+
+`na.rm` controls whether missing values are removed silently. The default is `na.rm = FALSE`, which means R still removes the missing values but warns you that it did. Setting `na.rm = TRUE` removes them without the warning.
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = island, y = flipper_length_mm)) +
+  geom_point(mapping = aes(color = species),
+             na.rm = TRUE)
+```
+
+**7. Add the caption "Data come from the palmerpenguins package." to the plot from the previous exercise.**
+
+Hint: look at the documentation for `labs()`.
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = island, y = flipper_length_mm)) +
+  geom_point(mapping = aes(color = species),
+             na.rm = TRUE) +
+  labs(caption = "Data come from the palmerpenguins package.",
+       title = "The Saga",
+       subtitle = "Anatii ft. AKA aka Kiernan Forbes")
+```
+
+**8. Recreate the visualization from the R4DS book. What aesthetic should `bill_depth_mm` be mapped to? Should it be mapped at the global level or at the geom level?**
+
+`bill_depth_mm` is mapped to `colour`, at the geom level (only the points use it, not the smooth line).
+
+```{r}
+ggplot(data = penguins,
+       mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(mapping = aes(colour = bill_depth_mm)) +
+  geom_smooth()
+```
+
+**9. Run this code in your head and predict what the output will look like. Then run it in R and check your prediction.**
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g, color = island)
+) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+To get a single trend line, put the `color` aesthetic in the local `geom_point()` instead.
+
+## ggplot2 calls
+
+You can leave out the explicit `data =` and `mapping =`. This is more concise:
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = island))
+```
+
+## Visualizing distributions
+
+How you visualize the distribution of a variable depends on the type of variable: categorical or numerical.
+
+### A categorical variable
+
+A variable is **categorical** if it can only take one of a small set of values. To see the distribution, use a bar chart:
+
+```{r}
+ggplot(penguins, aes(x = species)) +
+  geom_bar()
+```
+
+To reorder the bars by frequency, use `fct_infreq()`. It works on categorical variables only.
+
+```{r}
+ggplot(penguins, aes(x = fct_infreq(species))) +
+  geom_bar()
+```
+
+### A numerical variable
+
+A variable is **numerical** if it can take a wide range of numerical values, and it is sensible to add, subtract, or take averages with those values. Numerical variables can be continuous (e.g. 39.1, 65.8) or discrete (e.g. 40, 38).
+
+A common visualization is the histogram:
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 200, colour = "yellow")
+```
+
+A histogram divides the x-axis into equally spaced bins and then uses the height of a bar to display the number of observations in each bin.
+
+The binwidth matters:
+
+```{r}
+# terrible binwidth, hides the distribution
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 2000)
+```
+
+```{r}
+# not great either: too narrow, too many bars
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 20)
+```
+
+A density plot is an alternative to a histogram for a numerical variable:
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_density()
+```
+
+### Exercises {.unnumbered}
+
+**1. Make a bar plot of `species`, where you assign `species` to the `y` aesthetic. How is this plot different?**
+
+The bars flip to horizontal.
+
+```{r}
+ggplot(penguins, aes(y = fct_infreq(species))) +
+  geom_bar()
+```
+
+**2. How are the following two plots different? Which aesthetic, `color` or `fill`, is more useful for changing the color of bars?**
+
+```{r}
+# color is for the outline
+ggplot(penguins, aes(x = species)) +
+  geom_bar(color = "red")
+```
+
+```{r}
+# fill is for the solid colour of the geom
+ggplot(penguins, aes(x = species)) +
+  geom_bar(fill = "red")
+```
+
+`fill` is more useful for changing the colour of bars.
+
+**3. What does the `bins` argument in `geom_histogram()` do?**
+
+It controls how many bins the data is divided into.
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(color = "red", bins = 50)
+```
+
+**4. Make a histogram of the `carat` variable in the `diamonds` dataset. Experiment with different binwidths. What binwidth reveals the most interesting patterns?**
+
+First, explore the data:
+
+```{r}
+#| eval: false
+View(diamonds)
+```
+
+```{r}
+summary(diamonds)
+head(diamonds)
+str(diamonds)
+colnames(diamonds)
+```
+
+To see the range of the carat values:
+
+```{r}
+summary(diamonds$carat)
+```
+
+```{r}
+ggplot(diamonds, aes(x = carat)) +
+  geom_histogram(binwidth = 0.01)
+```
+
+I think a binwidth of 0.01 is the best.
+
+## Visualizing relationships
+
+To visualize a relationship, you need at least two variables mapped to aesthetics of a plot.
+
+### A numerical and a categorical variable
+
+The distribution of body mass by species:
+
+```{r}
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot()
+```
+
+Or a density plot. Here we also customize the thickness of the lines with `linewidth` so they stand out more against the background.
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, colour = species)) +
+  geom_density(linewidth = 1)
+```
+
+Map species to both `color` and `fill`, and use the `alpha` aesthetic to add transparency. It takes values between 0 (completely transparent) and 1 (completely opaque).
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g,
+                     fill = species,
+                     colour = species)) +
+  geom_density(alpha = 0.5)
+```
+
+### Two categorical variables
+
+Stacked bar plots show the relationship between two categorical variables:
+
+```{r}
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar()
+```
+
+For side-by-side bars:
+
+```{r}
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "dodge")
+```
+
+To compare proportions rather than raw counts (this might be better):
+
+```{r}
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill")
+```
+
+In these bar charts, the variable that will be separated into bars is mapped to the `x` aesthetic, and the variable that changes the colours inside the bars is mapped to the `fill` aesthetic.
+
+Overriding the default "count" y label:
+
+```{r}
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill") +
+  labs(y = "Proportion", x = "Island Name")
+```
+
+### Two numerical variables
+
+A scatterplot is the most common choice:
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(colour = "magenta")
+```
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(colour = island))
+```
+
+### Three or more variables
+
+We can include more variables by mapping them to additional aesthetics. In this scatterplot, the colour of points represents species and the shape represents island.
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(colour = species, shape = island))
+```
+
+Too many aesthetics can clutter the plot, so we can use **facets** instead. Facets split the plot into subplots that each display one subset of the data. This works especially well for categorical variables.
+
+To facet by a single variable, use `facet_wrap()`. Its first argument is a formula, created with `~` followed by a variable name. The variable you pass to `facet_wrap()` should be categorical.
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(colour = species, shape = island)) + # you can drop the shape aes
+  facet_wrap(~island) +
+  theme_bw() # just learnt of themes, yay!
+```
+
+### Exercises {.unnumbered}
+
+```{r}
+#| eval: false
+View(mpg)
+```
+
+**1. Make a scatterplot of `hwy` vs. `displ` using the `mpg` data frame. Next, map a third, numerical variable to `color`, then `size`, then both `color` and `size`, then `shape`. How do these aesthetics behave differently for categorical vs. numerical variables?**
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(colour = year))
+```
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(size = year))
+```
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(colour = year, size = year))
+```
+
+```{r}
+#| error: true
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(shape = year))
+```
+
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(shape = fl))
+```
+
+For **numerical** variables, `colour` gives a gradient (light to dark), `size` gives small to large circles, and `shape` gives an error.
+
+For **categorical** variables, `colour` gives distinct separate colours, `size` works but looks odd, and `shape` gives different symbols like circles, triangles and squares.
+
+Numbers have order and magnitude, so aesthetics that can show order (colour gradient, size) work well. Categories are just labels with no order, so aesthetics that show distinct differences (separate colours, shapes) work better.
+
+**2. In the scatterplot of `hwy` vs. `displ`, what happens if you map a third variable to `linewidth`?**
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(
+    colour = year,
+    linewidth = year,
+    size = 3
+  ))
+```
+
+It won't throw an error, but `geom_point()` has no line width to change. I'll try a density plot instead, where `linewidth` does something:
+
+```{r}
+ggplot(mpg, aes(displ)) +
+  geom_density(linewidth = 1,
+               alpha = 0.5,
+               fill = "steelblue")
+```
+
+**3. What happens if you map the same variable to multiple aesthetics?**
+
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = year, size = year)) +
+  labs(
+    x = "Engine Displacement",
+    y = "Highway Mileage",
+    title = "I dont know what the fuck I am doing!",
+    subtitle = "Maybe it will work out"
+  ) +
+  theme_foundation()
+```
+
+It works even better: the two aesthetics reinforce each other, making the pattern even more obvious to the reader.
+
+**4. Make a scatterplot of `bill_depth_mm` vs. `bill_length_mm` and color the points by `species`. What does adding colouring by species reveal about the relationship between these two variables? What about faceting by `species`?**
+
+```{r}
+ggplot(penguins, aes(bill_length_mm, bill_depth_mm)) +
+  geom_point(aes(colour = species))
+```
+
+Colour reveals a positive relationship within each species, while overall the trend is flat.
+
+```{r}
+ggplot(penguins, aes(bill_length_mm, bill_depth_mm)) +
+  geom_point(aes(colour = species)) +
+  facet_wrap(~species)
+```
+
+**5. Why does the following yield two separate legends? How would you fix it to combine the two legends?**
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(
+    x = bill_length_mm,
+    y = bill_depth_mm,
+    color = species,
+    shape = species
+  )
+) +
+  geom_point() +
+  labs(color = "Species")
+```
+
+Only the `color` legend was renamed, so the `color` and `shape` legends have different titles and ggplot2 cannot merge them. The fix is to rename both legends to match:
+
+```{r}
+ggplot(
+  data = penguins,
+  mapping = aes(
+    x = bill_length_mm,
+    y = bill_depth_mm,
+    color = species,
+    shape = species
+  )
+) +
+  geom_point() +
+  labs(color = "Species", shape = "Species") +
+  theme_foundation()
+```
+
+**6. Create the two following stacked bar plots. Which question can you answer with the first one? Which question can you answer with the second one?**
+
+```{r}
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill")
+```
+
+This answers the question: "What is the species composition of each island?"
+
+```{r}
+ggplot(penguins, aes(x = species, fill = island)) +
+  geom_bar(position = "fill")
+```
+
+This answers the question: "Where does each species live?"
+
+## Saving your plots
+
+Use `ggsave()`. By default, it saves the most recently created plot.
+
+```{r}
+#| eval: false
+ggplot(penguins, aes(flipper_length_mm, bill_length_mm)) +
+  geom_point(aes(colour = species))
+
+ggsave(filename = "penguin-plot.pdf") # check your working directory
+```

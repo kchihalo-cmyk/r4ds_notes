@@ -1,0 +1,200 @@
+---
+execute:
+  warning: false
+  message: false
+---
+
+# Data tidying {#sec-data-tidying}
+
+## Introduction
+
+### Prerequisites
+
+```{r}
+library(tidyverse)
+```
+
+## Tidy data
+
+You can represent the same underlying data in multiple ways. Tidy data is easier to read and work with.
+
+There are three interrelated rules that make a dataset tidy:
+
+1. Each variable is a column; each column is a variable.
+2. Each observation is a row; each row is an observation.
+3. Each value is a cell; each cell is a single value.
+
+The tidyverse packages are designed to work with tidy data. Example:
+
+```{r}
+table1
+```
+
+Compute the rate per 10,000:
+
+```{r}
+table1 |>
+  mutate(rate = cases / population * 10000)
+```
+
+Total cases per year:
+
+```{r}
+table1 |>
+  summarise(
+    total_cases = sum(cases),
+    .by = year
+  )
+```
+
+Visualize changes over time:
+
+```{r}
+ggplot(table1, aes(x = year, y = cases)) +
+  geom_line(aes(group = country), color = "grey50") +
+  geom_point(aes(color = country, shape = country)) +
+  scale_x_continuous(breaks = c(1999, 2000)) # x-axis breaks at 1999 and 2000
+```
+
+### Exercises
+
+**1. For each of the sample tables, describe what each observation and each column represents.**
+
+```{r}
+table1
+table2
+table3
+```
+
+- `table1`: each row represents a country in a particular year. Cases and population are stored in separate columns.
+- `table2`: each row represents a country, year, and measurement type. Cases and population are stored in one `count` column, which makes this a longer format.
+- `table3`: each row represents a country in a particular year. Cases and population are combined into a character column called `rate`, which makes numerical calculations more difficult.
+
+**2. Sketch out the process you'd use to calculate the rate for `table2` and `table3`. You will need to perform four operations:**
+
+a. Extract the number of TB cases per country per year.
+b. Extract the matching population per country per year.
+c. Divide cases by population, and multiply by 10000.
+d. Store back in the appropriate place.
+
+From ChatGPT:
+
+> For `table2`, I would group the data by country and year, extract the count for cases and the count for population, divide cases by population, multiply by 10,000, and store the result in a new `rate` column. For `table3`, I would first separate the `rate` column into cases and population, convert both values into numbers, calculate cases divided by population times 10,000, and replace the original text with the numerical rate.
+
+The code for `table2`:
+
+```{r}
+table2 |>
+  pivot_wider(
+    names_from = type,
+    values_from = count
+  ) |>
+  mutate(
+    rate = cases / population * 10000
+  )
+```
+
+## Lengthening data
+
+Pivoting transforms data into a tidy form: variables in columns and observations in rows.
+
+The tidyr functions for this are:
+
+1. `pivot_longer()`
+2. `pivot_wider()`
+
+### Data in column names
+
+```{r}
+billboard
+```
+
+In the Billboard data, each row initially represents one song. The weekly rankings are spread across the columns `wk1` to `wk76`. The column names contain the week variable, while the cell values contain the rank variable. `pivot_longer()` converts these weekly columns into rows, so that each row represents one song's rank in one week.
+
+```{r}
+billboard |>
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "position"
+  )
+```
+
+Or a different way of selecting the columns:
+
+```{r}
+billboard |>
+  pivot_longer(
+    cols = !c(artist, track, date.entered),
+    names_to = "week",
+    values_to = "rank"
+  )
+```
+
+`pivot_longer()` converts the columns beginning with `wk` into rows. The old column names are stored in a new `week` column, while the ranking values are stored in a new `rank` column.
+
+- `cols` identifies the columns to pivot.
+- `names_to` gives a name to the new column containing the old column names.
+- `values_to` gives a name to the new column containing the old cell values.
+
+**Structural missing values** occur because of how the data is organized, rather than because an expected value is unknown. In the Billboard data, `NA` means a song was not in the Top 100 during that week. `values_drop_na = TRUE` removes these unnecessary `NA` rows when using `pivot_longer()`.
+
+```{r}
+billboard |>
+  pivot_longer(
+    cols = starts_with("wk"),
+    values_to = "position",
+    names_to = "week",
+    values_drop_na = TRUE
+  )
+```
+
+To make computation easier, we can convert the values of `week` from character strings to numbers, using `mutate()` and `readr::parse_number()`:
+
+```{r}
+billboard_longer <- billboard |>
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week",
+    values_to = "position",
+    values_drop_na = TRUE
+  ) |>
+  mutate(week = parse_number(week))
+
+billboard_longer
+```
+
+`pivot_longer()` initially creates `week` as character values such as "wk1" and "wk2". `mutate()` with `parse_number()` extracts the numbers and converts `week` to a numeric variable, making future calculations easier.
+
+We can now visualize how song ranks vary over time:
+
+```{r}
+billboard_longer |>
+  ggplot(aes(week, position, group = track)) +
+  geom_line(alpha = 0.25) +
+  scale_y_reverse()
+```
+
+### How does pivoting work?
+
+Suppose we have 3 patients, each with 2 blood pressure readings:
+
+```{r}
+df <- tribble(
+  ~id,  ~bp1, ~bp2,
+  "A",  100,  120,
+  "B",  140,  115,
+  "C",  120,  125
+)
+```
+
+We want our new dataset to have three variables: `id` (which already exists), `measurement` (the column names), and `value` (the cell values). To achieve this, we pivot `df` longer:
+
+```{r}
+df |>
+  pivot_longer(
+    cols = bp1:bp2,
+    names_to = "measurement",
+    values_to = "value"
+  )
+```

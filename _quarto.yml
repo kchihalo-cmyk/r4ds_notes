@@ -1,0 +1,30 @@
+project:
+  type: book
+
+book:
+  title: "chihalo's R notebook"
+  author: "Chihalo Kamanga"
+  date: "30/09/2026"
+  chapters:
+    - index.qmd
+    - data-visualisation.qmd
+    - workflow-basics.qmd
+    - data-transformation.qmd
+    - code-style.qmd
+    - data-tidying.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  typst: default
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

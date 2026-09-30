@@ -1,0 +1,177 @@
+---
+execute:
+  warning: false
+  message: false
+---
+
+# Workflow: basics {#sec-workflow-basics}
+
+## Coding basics
+
+Using R to do basic math calculations:
+
+```{r}
+1 / 200 * 30
+(59 + 323 + 2) / 3
+sin(pi / 3)
+```
+
+Create new objects with the assignment operator `<-` (shortcut: Alt + -):
+
+```{r}
+x <- 3 * 5
+```
+
+Note that the value of `x` is not printed, it's just stored. To view the value, type `x` in the console.
+
+```{r}
+x
+```
+
+You can combine multiple elements into a vector with `c()`:
+
+```{r}
+primes <- c(2, 3, 5, 7, 11, 13)
+```
+
+Basic arithmetic on vectors is applied to every element of the vector:
+
+```{r}
+primes * 2
+primes - 1
+```
+
+All R statements where you create objects (assignment statements) have the same form:
+
+```{r}
+object_name <- 58
+```
+
+## Comments
+
+Use comments to explain the **why** of your code, not the how or the what.
+
+## What's in a name?
+
+Object names must start with a letter and can only contain letters, numbers, `_` and `.`.
+
+```{r}
+#| eval: false
+i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+And_aFew.People_RENOUNCEconvention
+```
+
+`snake_case` is better: lowercase only, with `_` between words.
+
+To inspect an object, type its name:
+
+```{r}
+x
+this_is_a_long_ass_name <- 2.6
+```
+
+To inspect a long name, type the first few letters (like "this") and press Tab to autocomplete.
+
+Another assignment:
+
+```{r}
+r_rocks <- 3 * 3
+```
+
+## Calling functions
+
+R has built-in functions that are called like this:
+
+```r
+function_name(argument1 = value1, argument2 = value2, ...)
+```
+
+```{r}
+seq(from = 1, to = 10)
+```
+
+The names of the first several arguments are often omitted, so we can rewrite this as:
+
+```{r}
+seq(1, 10)
+```
+
+```{r}
+x <- "hello world"
+x
+```
+
+## Exercises
+
+**1. Why does this code not work?**
+
+```{r}
+#| error: true
+my_variable <- 10
+my_varıable
+```
+
+The second line has a typo: the "i" in `variable` is a different character (a dotless ı), so R looks for an object that doesn't exist.
+
+**2. Tweak each of the following R commands so that they run correctly.**
+
+The broken versions:
+
+```{r}
+#| eval: false
+libary(todyverse)
+
+ggplot(dTA = mpg) +
+  geom_point(maping = aes(x = displ y = hwy)) +
+  geom_smooth(method = "lm)
+```
+
+The tweaked versions:
+
+```{r}
+library(tidyverse)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+But I can write it more concisely (at my level, lol):
+
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+**3. Press Option + Shift + K / Alt + Shift + K. What happens? How can you get to the same place using the menus?**
+
+The keyboard shortcut quick reference opens. Using the menus: Help → Keyboard Shortcuts Help.
+
+**4. Revisit an exercise from Section 1.6. Run the following lines of code. Which of the two plots is saved as `mpg-plot.png`? Why?**
+
+```{r}
+my_bar_plot <- ggplot(mpg, aes(x = class)) +
+  geom_bar()
+my_scatter_plot <- ggplot(mpg, aes(x = cty, y = hwy)) +
+  geom_point()
+```
+
+```{r}
+#| eval: false
+ggsave(filename = "mpg-plot.png", plot = my_bar_plot)
+```
+
+The bar plot is saved, because `plot = my_bar_plot` tells `ggsave()` exactly which plot to use.
+
+Note that when a plot is assigned to an object, it is stored but **not shown**. Call the object by name to see it:
+
+```{r}
+my_scatter_plot
+```
+
+```{r}
+my_bar_plot
+```

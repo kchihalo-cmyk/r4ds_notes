@@ -1,0 +1,32 @@
+# Preface {.unnumbered}
+
+This book is my journey and record of learning **R** using [*R for Data Science* (2nd edition)](https://r4ds.hadley.nz/) by Hadley and company.
+
+Started these notes on 20 July 2026. They began as plain R scripts that I wrote for myself as I worked through the book, and I've turned them into this Quarto book or whatever!
+
+## What's in here
+
+So far I've worked through:
+
+- @sec-data-visualisation: making plots with ggplot2
+- @sec-workflow-basics: the basics of writing R code
+- @sec-data-transformation: filtering, sorting, and summarising data with dplyr
+- @sec-code-style: writing tidy, readable code
+- @sec-data-tidying: reshaping data with tidyr (still in progress)
+
+More chapters will be added as I go.
+
+## How to read this book
+
+::: callout-note
+These are learning notes, not a textbook – take them with a the largest pinch of salt you ca find. They show my attempts, my mistakes, and what I worked out along the way, so expect some rough edges.
+:::
+
+- Every code chunk is real R code, and the output you see was produced when the book was built.
+- Some code is shown but not run, for example code that only works in RStudio or installs packages.
+- Some code fails **on purpose**, to show what a particular error looks like.
+- The exercises come from the R4DS book, and the answers are my own attempts. They may not be perfect, and corrections are welcome.
+
+## Acknowledgements
+
+All credit belongs to *R4DS 2e*. Original book at is at [r4ds.hadley.nz](https://r4ds.hadley.nz/). One time yeah!
