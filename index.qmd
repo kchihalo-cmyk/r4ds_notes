@@ -1,10 +1,10 @@
 # Preface {.unnumbered}
 
-This book is my journey and record of learning **R** using [*R for Data Science* (2nd edition)](https://r4ds.hadley.nz/) by Hadley and company.
+Wagwaan! This book is my journey and record of learning **R** . Still ongoing. A labour of love and hate – mostly hate.
 
-Started these notes on 20 July 2026. They began as plain R scripts that I wrote for myself as I worked through the book, and I've turned them into this Quarto book or whatever!
+Started these notes on 20 July 2026, should have started sooner – I know!. They began as plain R scripts that I wrote for myself as I worked through the book, and I’ve turned them into this Quarto book or whatever!
 
-## What's in here
+## What's in here?
 
 So far I've worked through:
 
@@ -12,21 +12,27 @@ So far I've worked through:
 - @sec-workflow-basics: the basics of writing R code
 - @sec-data-transformation: filtering, sorting, and summarising data with dplyr
 - @sec-code-style: writing tidy, readable code
-- @sec-data-tidying: reshaping data with tidyr (still in progress)
+- @sec-data-tidying: reshaping data with tidyr
+- @sec-workflow-scripts-projects: scripts and projects (coming soon)
+- @sec-data-import: reading data into R with readr (in progress)
 
 More chapters will be added as I go.
 
 ## How to read this book
 
 ::: callout-note
-These are learning notes, not a textbook – take them with a the largest pinch of salt you ca find. They show my attempts, my mistakes, and what I worked out along the way, so expect some rough edges.
+These are just my notes, they are not the gospel, obviously. Take them with a pinch of salt.
 :::
 
-- Every code chunk is real R code, and the output you see was produced when the book was built.
+- Every code chunk is real R code.
 - Some code is shown but not run, for example code that only works in RStudio or installs packages.
 - Some code fails **on purpose**, to show what a particular error looks like.
-- The exercises come from the R4DS book, and the answers are my own attempts. They may not be perfect, and corrections are welcome.
+- The exercises come from the R4DS book, and the answers are my own attempts. The code is surely not perfect or efficient. Feel free to write your own.
 
 ## Acknowledgements
 
-All credit belongs to *R4DS 2e*. Original book at is at [r4ds.hadley.nz](https://r4ds.hadley.nz/). One time yeah!
+Really?
+
+I would like to thank me.
+
+R is fun. I am just lazy.

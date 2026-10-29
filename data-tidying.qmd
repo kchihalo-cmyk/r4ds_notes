@@ -20,9 +20,9 @@ You can represent the same underlying data in multiple ways. Tidy data is easier
 
 There are three interrelated rules that make a dataset tidy:
 
-1. Each variable is a column; each column is a variable.
-2. Each observation is a row; each row is an observation.
-3. Each value is a cell; each cell is a single value.
+1.  Each variable is a column; each column is a variable.
+2.  Each observation is a row; each row is an observation.
+3.  Each value is a cell; each cell is a single value.
 
 The tidyverse packages are designed to work with tidy data. Example:
 
@@ -72,10 +72,10 @@ table3
 
 **2. Sketch out the process you'd use to calculate the rate for `table2` and `table3`. You will need to perform four operations:**
 
-a. Extract the number of TB cases per country per year.
-b. Extract the matching population per country per year.
-c. Divide cases by population, and multiply by 10000.
-d. Store back in the appropriate place.
+a.  Extract the number of TB cases per country per year.
+b.  Extract the matching population per country per year.
+c.  Divide cases by population, and multiply by 10000.
+d.  Store back in the appropriate place.
 
 From ChatGPT:
 
@@ -100,8 +100,8 @@ Pivoting transforms data into a tidy form: variables in columns and observations
 
 The tidyr functions for this are:
 
-1. `pivot_longer()`
-2. `pivot_wider()`
+1.  `pivot_longer()`
+2.  `pivot_wider()`
 
 ### Data in column names
 
@@ -197,4 +197,138 @@ df |>
     names_to = "measurement",
     values_to = "value"
   )
+```
+
+### Many variables in column names
+
+Problems arise when you have multiple pieces of information crammed into the column names, and you would like to store these in separate new variables.
+
+```{r}
+#| eval: false
+View(who2)
+```
+
+```{r}
+who2
+```
+
+You can use `pivot_longer()` with a vector of column names for `names_to`, and instructions for splitting the original variable names into pieces with `names_sep`, as well as a column name for `values_to`:
+
+```{r}
+who2 |>
+  pivot_longer(
+    cols = !(country:year),
+    names_to = c("diagnosis", "gender", "age"),
+    names_sep = "_",
+    values_to = "count"
+  )
+```
+
+```{r}
+who2 |>
+  filter(country == "Malawi")
+```
+
+In `who2`, `values_drop_na = TRUE` would remove observations where the patient count is `NA`. Unlike in the Billboard example, we should first understand what the `NA`s represent, because they may indicate missing or unreported data rather than observations that do not exist.
+
+In `who2`, information about the diagnosis method, gender, and age is encoded in the column names. `pivot_longer()` converts these columns into rows and uses `names_to` to create separate `diagnosis`, `gender`, and `age` columns. `names_sep = "_"` tells R to split each column name at the underscores, while `values_to = "count"` stores the patient counts in a new `count` column.
+
+### Data and variable names in the column headers
+
+Another problem comes when the column names include a mix of variable values and variable names. For example, the `household` dataset in tidyr:
+
+```{r}
+household
+```
+
+```{r}
+household |>
+  pivot_longer(
+    cols = !family,
+    names_to = c(".value", "child"),
+    names_sep = "_",
+    values_drop_na = TRUE
+  )
+```
+
+In the `household` data, column names such as `name_1` and `dob_1` contain both variable names (`name`, `dob`) and values of the `child` variable (1, 2). `names_to = c(".value", "child")` tells `pivot_longer()` to use the first part of each column name as an output column name and the second part as the value of `child`. `names_sep = "_"` tells R how to split the names.
+
+`.value` is a special instruction in `pivot_longer()`. It tells R to use part of the original column name as the name of a new output column, rather than putting that part into a normal variable column.
+
+::: callout-tip
+If you remember just one thing: `.value` = "make this part of the column name into an actual column name."
+:::
+
+## Widening data
+
+`pivot_wider()` makes datasets wider by increasing the columns and reducing the rows. It helps when one observation is spread across multiple rows.
+
+```{r}
+#| eval: false
+View(cms_patient_experience)
+?cms_patient_experience
+```
+
+```{r}
+cms_patient_experience
+```
+
+`pivot_wider()` has the opposite interface to `pivot_longer()`: instead of choosing new column names, we provide the existing columns that define the new names (`names_from`) and the values (`values_from`).
+
+`pivot_wider()` converts long data into wide data. `names_from` specifies which existing column contains the values to use as new column names, while `values_from` specifies which column contains the values that will fill those new columns.
+
+```{r}
+cms_patient_experience |>
+  pivot_wider(
+    names_from = measure_cd,
+    values_from = prf_rate
+  )
+```
+
+`id_cols` specifies which columns uniquely identify each row when using `pivot_wider()`. `names_from` supplies the new column names, while `values_from` supplies the values that fill those columns.
+
+```{r}
+cms_patient_experience |>
+  pivot_wider(
+    id_cols = starts_with("org"),
+    names_from = measure_cd,
+    values_from = prf_rate
+  )
+```
+
+::: callout-tip
+The mental model to keep: identify the row, choose the new columns, then fill them with values.
+:::
+
+### How does pivot_wider() work?
+
+Suppose we have two patients with ids A and B. We have three blood pressure measurements on patient A and two on patient B:
+
+```{r}
+df <- tribble(
+  ~id, ~measurement, ~value,
+  "A",        "bp1",    100,
+  "B",        "bp1",    140,
+  "B",        "bp2",    115,
+  "A",        "bp2",    120,
+  "A",        "bp3",    105
+)
+
+df
+```
+
+```{r}
+df |>
+  pivot_wider(
+    names_from = measurement,
+    values_from = value
+  )
+```
+
+To see which new columns will be created, look at the distinct values of `measurement`:
+
+```{r}
+df |>
+  distinct(measurement) |>
+  pull()
 ```

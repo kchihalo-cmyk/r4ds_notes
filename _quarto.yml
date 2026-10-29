@@ -12,7 +12,8 @@ book:
     - data-transformation.qmd
     - code-style.qmd
     - data-tidying.qmd
-    - summary.qmd
+    - workflow-scripts-projects.qmd
+    - data-import.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -23,8 +24,7 @@ format:
       - cosmo
       - brand
   typst: default
-  pdf:
-    documentclass: scrreprt
+  
 
 editor: visual
 
