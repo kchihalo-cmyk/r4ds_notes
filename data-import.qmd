@@ -19,7 +19,7 @@ In this chapter I'm learning about:
 library(tidyverse)
 ```
 
-Install Janitor and the rest:
+If you haven't installed the janitor package, run this once in the Console:
 
 ```{r}
 #| eval: false
@@ -29,6 +29,10 @@ install.packages("janitor")
 ```{r}
 library(janitor)
 ```
+
+::: callout-note
+The first example below reads a file from the internet, so this chapter needs an internet connection when the book is built.
+:::
 
 ## Reading data from a file
 
@@ -54,7 +58,7 @@ students <- read_csv("https://pos.it/r4ds-students-csv")
 students
 ```
 
-### Some important stuff
+### Practical advice
 
 When importing data, inspect how **missing values** are represented. The `na` argument in `read_csv()` specifies which values should be interpreted as missing (`NA`). For example, `na = c("N/A", "")` treats both `"N/A"` and empty strings as missing.
 
@@ -199,7 +203,7 @@ The number of names you supply should match the number of columns in the data.
 
 ### Other file types
 
-Meh
+*(Notes to come.)*
 
 ### Exercises
 
@@ -401,7 +405,7 @@ read_csv(I(simple_csv), na = ".")
 **The nine column types**
 
 | Function | What it tells readr to do |
-|------------------------------------|------------------------------------|
+|----|----|
 | `col_logical()` | Read values as `TRUE` or `FALSE`. |
 | `col_double()` | Read values as numeric, including decimals. |
 | `col_integer()` | Read values as whole numbers. |
@@ -540,3 +544,181 @@ The distinction:
 - `cols_only()` tells readr which columns to import. Only the specified columns are included.
 
 ## Reading data from multiple files
+
+It is possible to read data from multiple files at once into a single data frame. For instance:
+
+```{r}
+#| eval: false
+sales_files <- c(
+  "data/01-sales.csv",
+  "data/02-sales.csv",
+  "data/03-sales.csv"
+)
+
+read_csv(sales_files, id = "file")
+```
+
+With this method, the files need to already be in the `data` folder of the project. I don't have them there, so this code is only shown, not run.
+
+The same files are also available online:
+
+```{r}
+sales_files <- c(
+  "https://pos.it/r4ds-01-sales",
+  "https://pos.it/r4ds-02-sales",
+  "https://pos.it/r4ds-03-sales"
+)
+
+read_csv(sales_files, id = "file")
+```
+
+The `id` argument creates a new column named `file` in the resulting data frame, identifying which file each row of data came from.
+
+And a little reminder of `cols_only()`:
+
+```{r}
+read_csv(
+  sales_files,
+  id = "file",
+  col_types = cols_only(month = col_character())
+)
+```
+
+If there are a lot of files and writing out all the names is a chore, you can use `list.files()` to find the files for you by matching a pattern in the file names:
+
+```{r}
+#| eval: false
+sales_files <- list.files("data", pattern = "sales\\.csv$", full.names = TRUE)
+
+sales_files
+```
+
+Again, these files need to be in the `data` folder, and I don't have them there, so this code is only shown, not run.
+
+## Writing to a file
+
+**The two functions**
+
+| Function      | What it does                                       |
+|---------------|----------------------------------------------------|
+| `write_csv()` | Saves data as a comma-separated values (CSV) file. |
+| `write_tsv()` | Saves data as a tab-separated values (TSV) file.   |
+
+Both functions take a data frame or tibble and save it to disk.
+
+```{r}
+#| eval: false
+write_csv(students, "students.csv")
+```
+
+```{r}
+students
+```
+
+Variable type information is lost when you write to a CSV, because you're starting over with reading from a plain text file again.
+
+**A practical example**
+
+Imagine you've cleaned a student dataset (not the one above) and want to save the cleaned version so you can use it again later.
+
+```{r}
+students_clean <- students |>
+  filter(!is.na(age))
+
+students_clean
+```
+
+```{r}
+#| eval: false
+write_csv(students_clean, "data/students_clean.csv") # don't forget the ""
+
+# the same thing with the argument names written out
+write_csv(x = students_clean, file = "data/students_clean.csv")
+```
+
+CSV is not always the best format for saving data that you plan to load back into R later. There are two main alternatives:
+
+1.  `write_rds()` and `read_rds()`
+
+```{r}
+#| eval: false
+write_rds(students, "students.rds")
+
+read_rds("students.rds")
+```
+
+2.  The **arrow** package, with which you can write and read parquet files
+
+```{r}
+#| eval: false
+install.packages("arrow") # run once in the Console
+
+library(arrow)
+
+write_parquet(students, "students.parquet")
+
+read_parquet("students.parquet")
+```
+
+The `.rds` and `.parquet` files will be saved to the project folder. To save them to the `data` folder specifically:
+
+```{r}
+#| eval: false
+write_csv(students, "data/students.csv")
+
+write_parquet(students, "data/students.parquet")
+```
+
+## Data entry
+
+You can enter data by hand by directly creating a tibble in a script. Two functions can be used, depending on how you lay out the tibble: by columns or by rows.
+
+**`tibble()` works by columns**
+
+```{r}
+tibble(
+  x = c(9, 6, 3, 0),
+  y = c("e", "t", "u", "d"),
+  z = c(0.67, 0.23, 9.56, 4.56)
+)
+```
+
+```{r}
+tibble(
+  district = c("Lilongwe", "Mzimba", "Zomba", "Machinga"),
+  surveyed = c(120, 90, 150, 67),
+  reached = c(105, 78, 199, "NA")
+)
+```
+
+Notice the quotation marks: these are character values, i.e. a `col_character` column. The important thing to understand is that `tibble()` expects you to think about the data one column at a time.
+
+**`tribble()` works by row**
+
+Instead of defining each column separately, you enter the data row by row. Column headings start with `~` and entries are separated by commas, which makes it easier to read. The tilde (`~`) tells `tribble()` that these are column names.
+
+```{r}
+tribble(
+  ~x, ~y, ~z,
+  2, "e", 0.54,
+  5, "d", 7.43,
+  0, "z", 1.11
+)
+```
+
+Another `tibble()` example, by columns:
+
+```{r}
+tibble(
+  district = c("Lilongwe", "Mzimba", "Zomba"),
+  surveyed = c(120, 90, 150),
+  reached = c(105, 78, 132)
+)
+```
+
+You can use the following to check for missing values in your data (`health_data` stands for whichever data frame you want to check):
+
+```{r}
+#| eval: false
+colSums(is.na(health_data))
+```

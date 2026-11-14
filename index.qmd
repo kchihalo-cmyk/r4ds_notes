@@ -1,8 +1,8 @@
 # Preface {.unnumbered}
 
-Wagwaan! This book is my journey and record of learning **R** . Still ongoing. A labour of love and hate – mostly hate.
+Wagwaan! This book is my journey and record of learning R. Still ongoing. A labour of love and hate – mostly hate.
 
-Started these notes on 20 July 2026, should have started sooner – I know!. They began as plain R scripts that I wrote for myself as I worked through the book, and I’ve turned them into this Quarto book or whatever!
+Started these notes on 20 July 2026, should have started sooner – I know! They began, and still are mostly, as plain R scripts that I wrote for myself as I worked through the book, and I’ve turned them into this Quarto book or whatever!
 
 ## What's in here?
 
@@ -14,20 +14,20 @@ So far I've worked through:
 - @sec-code-style: writing tidy, readable code
 - @sec-data-tidying: reshaping data with tidyr
 - @sec-workflow-scripts-projects: scripts and projects (coming soon)
-- @sec-data-import: reading data into R with readr (in progress)
+- @sec-data-import: reading data into R with readr
+- @sec-workflow-getting-help: getting help
+- @sec-layers: the layered grammar of graphics (in progress)
 
 More chapters will be added as I go.
 
 ## How to read this book
 
-::: callout-note
 These are just my notes, they are not the gospel, obviously. Take them with a pinch of salt.
-:::
 
-- Every code chunk is real R code.
+- Every code is real R code.
 - Some code is shown but not run, for example code that only works in RStudio or installs packages.
-- Some code fails **on purpose**, to show what a particular error looks like.
-- The exercises come from the R4DS book, and the answers are my own attempts. The code is surely not perfect or efficient. Feel free to write your own.
+- Some code fails on purpose, so calm yourself.
+- The exercises are from the R4DS book, and the answers are my own attempts. The code is surely not perfect or efficient. Feel free to write your own.
 
 ## Acknowledgements
 

@@ -14,6 +14,8 @@ book:
     - data-tidying.qmd
     - workflow-scripts-projects.qmd
     - data-import.qmd
+    - workflow-getting-help.qmd
+    - layers.qmd
     - references.qmd
 
 bibliography: references.bib

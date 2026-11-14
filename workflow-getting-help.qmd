@@ -1,0 +1,46 @@
+---
+execute:
+  warning: false
+  message: false
+---
+
+# Workflow: getting help {#sec-workflow-getting-help}
+
+You WILL need help, especially if you're not from a programming background, like yours truly. R is not a walk in Njamba Park.
+
+## Goooogle
+
+Got a problem or an error? Google that shit!
+
+And use these LLMs too. Claude is alright. ChatGPT too.
+
+## Making a reprex
+
+A **reprex** is short for **repr**oducible **ex**ample. It is a small, self-contained example that someone else can copy, paste, and run.
+
+A good reprex has two important characteristics:
+
+1.  **Reproducible**: it includes everything needed to run the code.
+2.  **Minimal**: it removes everything unrelated to the problem.
+
+A reproducible example needs three things:
+
+1.  **Packages**: load the required packages with `library()`, at the top of the script.
+2.  **Data**: include code to recreate the necessary data. `dput()` generates code to recreate an R object.
+3.  **Code**: keep it short, readable, and relevant.
+
+A tiny example:
+
+```{r}
+y <- 1:6
+mean(y)
+```
+
+`reprex()` prepares code that you've copied to the clipboard, so it's ready to paste somewhere else:
+
+```{r}
+#| eval: false
+reprex::reprex()
+```
+
+Then test the example by running the complete code in a fresh R session.
