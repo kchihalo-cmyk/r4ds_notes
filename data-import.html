@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
-<p>In this chapter I’m learning about:</p>
+<p>In this chapter:</p>
 <ul>
 <li>reading plain-text rectangular files into R</li>
 <li>handcrafting data frames (tibbles) in R</li>
@@ -298,8 +298,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The examples in this chapter read practice files from a <code>data</code> folder inside the book folder. You need <code>data/students.csv</code> there for the chapter to build. The sales files (<code>data/01-sales.csv</code>, <code>data/02-sales.csv</code>, <code>data/03-sales.csv</code>) are optional: the examples that use them only run if the files are there.</p>
-<p>The files come from the R4DS book’s GitHub repository (<code>hadley/r4ds</code>, in the <code>data</code> folder).</p>
+<p>The examples in this chapter read practice files from my <code>data</code> folder. Just take note and beware :)</p>
 </div>
 </div>
 </section>
@@ -586,16 +585,16 @@ Note
 <pre><code># A tibble: 10 × 2
      `1`   `2`
    &lt;int&gt; &lt;dbl&gt;
- 1     1  2.83
- 2     2  1.71
- 3     3  6.12
- 4     4  8.28
- 5     5 10.9 
- 6     6 13.3 
- 7     7 13.9 
- 8     8 16.9 
- 9     9 17.6 
-10    10 21.0 </code></pre>
+ 1     1  1.84
+ 2     2  4.87
+ 3     3  5.09
+ 4     4  5.66
+ 5     5  8.19
+ 6     6 13.2 
+ 7     7 14.0 
+ 8     8 14.1 
+ 9     9 17.8 
+10    10 20.7 </code></pre>
 </div>
 </div>
 <p><em>a. Extracting the variable called <code>1</code>.</em></p>
@@ -630,7 +629,8 @@ Note
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(annoying, <span class="fu">aes</span>(<span class="st">`</span><span class="at">1</span><span class="st">`</span>, <span class="st">`</span><span class="at">2</span><span class="st">`</span>)) <span class="sc">+</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -663,16 +663,16 @@ Note
 <pre><code># A tibble: 10 × 3
      `1`   `2`   `3`
    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1     1  2.83 2.83 
- 2     2  1.71 0.855
- 3     3  6.12 2.04 
- 4     4  8.28 2.07 
- 5     5 10.9  2.18 
- 6     6 13.3  2.22 
- 7     7 13.9  1.99 
- 8     8 16.9  2.11 
- 9     9 17.6  1.96 
-10    10 21.0  2.10 </code></pre>
+ 1     1  1.84  1.84
+ 2     2  4.87  2.44
+ 3     3  5.09  1.70
+ 4     4  5.66  1.42
+ 5     5  8.19  1.64
+ 6     6 13.2   2.19
+ 7     7 14.0   2.00
+ 8     8 14.1   1.76
+ 9     9 17.8   1.98
+10    10 20.7   2.07</code></pre>
 </div>
 </div>
 <p><em>d.&nbsp;Renaming the columns to <code>one</code>, <code>two</code>, and <code>three</code>.</em></p>
@@ -688,16 +688,16 @@ Note
 <pre><code># A tibble: 10 × 3
      one   two three
    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1     1  2.83 2.83 
- 2     2  1.71 0.855
- 3     3  6.12 2.04 
- 4     4  8.28 2.07 
- 5     5 10.9  2.18 
- 6     6 13.3  2.22 
- 7     7 13.9  1.99 
- 8     8 16.9  2.11 
- 9     9 17.6  1.96 
-10    10 21.0  2.10 </code></pre>
+ 1     1  1.84  1.84
+ 2     2  4.87  2.44
+ 3     3  5.09  1.70
+ 4     4  5.66  1.42
+ 5     5  8.19  1.64
+ 6     6 13.2   2.19
+ 7     7 14.0   2.00
+ 8     8 14.1   1.76
+ 9     9 17.8   1.98
+10    10 20.7   2.07</code></pre>
 </div>
 </div>
 <p><strong>Syntactic vs.&nbsp;non-syntactic names</strong></p>
@@ -818,7 +818,7 @@ e.g.:
 <pre><code># A tibble: 1 × 5
     row   col expected actual file                                              
   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                                             
-1     3     1 a double .      C:/Users/Noel/AppData/Local/Temp/RtmpYdssqv/vroom…</code></pre>
+1     3     1 a double .      C:/Users/Noel/AppData/Local/Temp/Rtmp00CS7b/vroom…</code></pre>
 </div>
 </div>
 <p>This tells us there was a problem in row 3, column 1, where readr expected a double but got a <code>.</code>. That suggests this dataset uses <code>.</code> for missing values. So we set <code>na = "."</code>, the automatic guessing succeeds, and we get the numeric column that we want:</p>
