@@ -210,6 +210,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./small-small-exercise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Small Small Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -585,16 +591,16 @@ Note
 <pre><code># A tibble: 10 × 2
      `1`   `2`
    &lt;int&gt; &lt;dbl&gt;
- 1     1  1.84
- 2     2  4.87
- 3     3  5.09
- 4     4  5.66
- 5     5  8.19
- 6     6 13.2 
- 7     7 14.0 
- 8     8 14.1 
- 9     9 17.8 
-10    10 20.7 </code></pre>
+ 1     1  1.93
+ 2     2  2.90
+ 3     3  6.21
+ 4     4  8.03
+ 5     5 11.3 
+ 6     6 12.0 
+ 7     7 13.1 
+ 8     8 16.9 
+ 9     9 17.6 
+10    10 19.4 </code></pre>
 </div>
 </div>
 <p><em>a. Extracting the variable called <code>1</code>.</em></p>
@@ -663,16 +669,16 @@ Note
 <pre><code># A tibble: 10 × 3
      `1`   `2`   `3`
    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1     1  1.84  1.84
- 2     2  4.87  2.44
- 3     3  5.09  1.70
- 4     4  5.66  1.42
- 5     5  8.19  1.64
- 6     6 13.2   2.19
- 7     7 14.0   2.00
- 8     8 14.1   1.76
- 9     9 17.8   1.98
-10    10 20.7   2.07</code></pre>
+ 1     1  1.93  1.93
+ 2     2  2.90  1.45
+ 3     3  6.21  2.07
+ 4     4  8.03  2.01
+ 5     5 11.3   2.27
+ 6     6 12.0   1.99
+ 7     7 13.1   1.88
+ 8     8 16.9   2.11
+ 9     9 17.6   1.95
+10    10 19.4   1.94</code></pre>
 </div>
 </div>
 <p><em>d.&nbsp;Renaming the columns to <code>one</code>, <code>two</code>, and <code>three</code>.</em></p>
@@ -688,16 +694,16 @@ Note
 <pre><code># A tibble: 10 × 3
      one   two three
    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1     1  1.84  1.84
- 2     2  4.87  2.44
- 3     3  5.09  1.70
- 4     4  5.66  1.42
- 5     5  8.19  1.64
- 6     6 13.2   2.19
- 7     7 14.0   2.00
- 8     8 14.1   1.76
- 9     9 17.8   1.98
-10    10 20.7   2.07</code></pre>
+ 1     1  1.93  1.93
+ 2     2  2.90  1.45
+ 3     3  6.21  2.07
+ 4     4  8.03  2.01
+ 5     5 11.3   2.27
+ 6     6 12.0   1.99
+ 7     7 13.1   1.88
+ 8     8 16.9   2.11
+ 9     9 17.6   1.95
+10    10 19.4   1.94</code></pre>
 </div>
 </div>
 <p><strong>Syntactic vs.&nbsp;non-syntactic names</strong></p>
@@ -818,7 +824,7 @@ e.g.:
 <pre><code># A tibble: 1 × 5
     row   col expected actual file                                              
   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                                             
-1     3     1 a double .      C:/Users/Noel/AppData/Local/Temp/Rtmp00CS7b/vroom…</code></pre>
+1     3     1 a double .      C:/Users/Noel/AppData/Local/Temp/RtmpEjxS5Z/vroom…</code></pre>
 </div>
 </div>
 <p>This tells us there was a problem in row 3, column 1, where readr expected a double but got a <code>.</code>. That suggests this dataset uses <code>.</code> for missing values. So we set <code>na = "."</code>, the automatic guessing succeeds, and we get the numeric column that we want:</p>

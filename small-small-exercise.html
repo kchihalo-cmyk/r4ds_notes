@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Small Small Exercise – chihalo's R notebook</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./layers.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-631496449bf32ff9b0bb69a6bfd9195d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./small-small-exercise.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Small Small Exercise</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">chihalo’s R notebook</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-visualisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Workflow: basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code-style.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Workflow: code style</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-tidying.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data tidying</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow-scripts-projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow: scripts and projects</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data import</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./workflow-getting-help.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Workflow: getting help</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Layers</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./small-small-exercise.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Small Small Exercise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#loading-and-inspecting-the-data" id="toc-loading-and-inspecting-the-data" class="nav-link active" data-scroll-target="#loading-and-inspecting-the-data"><span class="header-section-number">10.1</span> Loading and inspecting the data</a></li>
+  <li><a href="#getting-to-know-the-dataset" id="toc-getting-to-know-the-dataset" class="nav-link" data-scroll-target="#getting-to-know-the-dataset"><span class="header-section-number">10.2</span> Getting to know the dataset</a></li>
+  <li><a href="#how-many-community-health-workers-are-there" id="toc-how-many-community-health-workers-are-there" class="nav-link" data-scroll-target="#how-many-community-health-workers-are-there"><span class="header-section-number">10.3</span> How many community health workers are there?</a></li>
+  <li><a href="#a-lilongwe-subset" id="toc-a-lilongwe-subset" class="nav-link" data-scroll-target="#a-lilongwe-subset"><span class="header-section-number">10.4</span> A Lilongwe subset</a></li>
+  <li><a href="#choosing-columns-with-select" id="toc-choosing-columns-with-select" class="nav-link" data-scroll-target="#choosing-columns-with-select"><span class="header-section-number">10.5</span> Choosing columns with <code>select()</code></a></li>
+  <li><a href="#ranking-with-arrange" id="toc-ranking-with-arrange" class="nav-link" data-scroll-target="#ranking-with-arrange"><span class="header-section-number">10.6</span> Ranking with <code>arrange()</code></a></li>
+  <li><a href="#creating-new-variables-with-mutate" id="toc-creating-new-variables-with-mutate" class="nav-link" data-scroll-target="#creating-new-variables-with-mutate"><span class="header-section-number">10.7</span> Creating new variables with <code>mutate()</code></a></li>
+  <li><a href="#grouping-and-summarising" id="toc-grouping-and-summarising" class="nav-link" data-scroll-target="#grouping-and-summarising"><span class="header-section-number">10.8</span> Grouping and summarising</a></li>
+  <li><a href="#counting-and-comparing-districts" id="toc-counting-and-comparing-districts" class="nav-link" data-scroll-target="#counting-and-comparing-districts"><span class="header-section-number">10.9</span> Counting and comparing districts</a></li>
+  <li><a href="#district-coverage-rates" id="toc-district-coverage-rates" class="nav-link" data-scroll-target="#district-coverage-rates"><span class="header-section-number">10.10</span> District coverage rates</a></li>
+  <li><a href="#missing-values-and-data-quality" id="toc-missing-values-and-data-quality" class="nav-link" data-scroll-target="#missing-values-and-data-quality"><span class="header-section-number">10.11</span> Missing values and data quality</a></li>
+  <li><a href="#plotting-district-coverage" id="toc-plotting-district-coverage" class="nav-link" data-scroll-target="#plotting-district-coverage"><span class="header-section-number">10.12</span> Plotting district coverage</a></li>
+  <li><a href="#coverage-over-time" id="toc-coverage-over-time" class="nav-link" data-scroll-target="#coverage-over-time"><span class="header-section-number">10.13</span> Coverage over time</a></li>
+  <li><a href="#the-overall-monthly-trend" id="toc-the-overall-monthly-trend" class="nav-link" data-scroll-target="#the-overall-monthly-trend"><span class="header-section-number">10.14</span> The overall monthly trend</a></li>
+  <li><a href="#data-quality-checks" id="toc-data-quality-checks" class="nav-link" data-scroll-target="#data-quality-checks"><span class="header-section-number">10.15</span> Data quality checks</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-small-small-exercise" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Small Small Exercise</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A practice exercise I made for myself, what what.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter needs the data file <code>data/malawi_health_programme_monitoring.csv</code> in the book’s <code>data</code> folder. If the file isn’t there, the code is shown but not run.</p>
+</div>
+</div>
+<section id="loading-and-inspecting-the-data" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="loading-and-inspecting-the-data"><span class="header-section-number">10.1</span> Loading and inspecting the data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Tell <code>read_csv()</code> which values count as missing:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/malawi_health_programme_monitoring.csv"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"NA"</span>, <span class="st">"."</span>, <span class="st">" "</span>, <span class="st">""</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 300
+Columns: 9
+$ district              &lt;chr&gt; "Lilongwe", "Lilongwe", "Lilongwe", "Lilongwe", …
+$ chw_id                &lt;chr&gt; "LIL_CHW_01", "LIL_CHW_01", "LIL_CHW_01", "LIL_C…
+$ month                 &lt;date&gt; 2025-01-01, 2025-02-01, 2025-03-01, 2025-04-01,…
+$ households_targeted   &lt;dbl&gt; 52, 46, 54, 52, 55, 52, 46, 52, 43, 60, 39, 47, …
+$ households_visited    &lt;dbl&gt; 48, 43, 53, 45, 46, 50, 39, 44, 36, 50, 34, 39, …
+$ beneficiaries_reached &lt;dbl&gt; 136, 89, 168, 107, 135, 102, 115, 96, 102, 135, …
+$ referrals_made        &lt;dbl&gt; 4, 7, 4, 5, 3, 4, 4, 4, 5, 7, 1, 4, 2, 3, 9, 3, …
+$ group_sessions        &lt;dbl&gt; 5, 1, 3, 1, 5, 1, 2, 1, 2, 1, 3, 4, 5, 3, 1, 3, …
+$ stockout_days         &lt;dbl&gt; 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+  district chw_id     month      households_targeted households_visited
+  &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+1 Lilongwe LIL_CHW_01 2025-01-01                  52                 48
+2 Lilongwe LIL_CHW_01 2025-02-01                  46                 43
+3 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+4 Lilongwe LIL_CHW_01 2025-04-01                  52                 45
+5 Lilongwe LIL_CHW_01 2025-05-01                  55                 46
+6 Lilongwe LIL_CHW_01 2025-06-01                  52                 50
+# ℹ 4 more variables: beneficiaries_reached &lt;dbl&gt;, referrals_made &lt;dbl&gt;,
+#   group_sessions &lt;dbl&gt;, stockout_days &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      district         chw_id        month            households_targeted
+ Length   :300   Length   :300   Min.   :2025-01-01   Min.   :35.00      
+ N.unique :  5   N.unique : 25   1st Qu.:2025-03-24   1st Qu.:41.00      
+ N.blank  :  0   N.blank  :  0   Median :2025-06-16   Median :47.00      
+ Min.nchar:  5   Min.nchar: 10   Mean   :2025-06-16   Mean   :47.55      
+ Max.nchar:  8   Max.nchar: 10   3rd Qu.:2025-09-08   3rd Qu.:54.00      
+                                 Max.   :2025-12-01   Max.   :60.00      
+                                                                         
+ households_visited beneficiaries_reached referrals_made  group_sessions 
+ Min.   :17.00      Min.   : 37.00        Min.   :0.000   Min.   :0.000  
+ 1st Qu.:27.00      1st Qu.: 70.00        1st Qu.:2.000   1st Qu.:1.000  
+ Median :33.00      Median : 83.00        Median :3.000   Median :3.000  
+ Mean   :33.49      Mean   : 86.86        Mean   :2.953   Mean   :2.603  
+ 3rd Qu.:39.00      3rd Qu.:101.25        3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :54.00      Max.   :168.00        Max.   :9.000   Max.   :8.000  
+                                          NAs    :4       NAs    :3      
+ stockout_days   
+ Min.   :0.0000  
+ 1st Qu.:0.0000  
+ Median :0.0000  
+ Mean   :0.7133  
+ 3rd Qu.:1.0000  
+ Max.   :4.0000  
+                 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "district"              "chw_id"                "month"                
+[4] "households_targeted"   "households_visited"    "beneficiaries_reached"
+[7] "referrals_made"        "group_sessions"        "stockout_days"        </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 300</code></pre>
+</div>
+</div>
+<p>A first plot, of stockout days by district:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(health_data, <span class="fu">aes</span>(<span class="fu">reorder</span>(district, <span class="sc">-</span>stockout_days), stockout_days)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"firebrick"</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"District"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Stockout Days"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-small-exercise_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="getting-to-know-the-dataset" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="getting-to-know-the-dataset"><span class="header-section-number">10.2</span> Getting to know the dataset</h2>
+<p><strong>1. How many rows and columns does the dataset contain?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 300</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 300   9</code></pre>
+</div>
+</div>
+<p><strong>2. What does each row represent?</strong></p>
+<p>Each row is one observation: one community health worker in one month of the year, going around targeting and visiting households and so on.</p>
+<p><strong>3. What are the different variables?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(health_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [300 × 9] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ district             : chr [1:300] "Lilongwe" "Lilongwe" "Lilongwe" "Lilongwe" ...
+ $ chw_id               : chr [1:300] "LIL_CHW_01" "LIL_CHW_01" "LIL_CHW_01" "LIL_CHW_01" ...
+ $ month                : Date[1:300], format: "2025-01-01" "2025-02-01" ...
+ $ households_targeted  : num [1:300] 52 46 54 52 55 52 46 52 43 60 ...
+ $ households_visited   : num [1:300] 48 43 53 45 46 50 39 44 36 50 ...
+ $ beneficiaries_reached: num [1:300] 136 89 168 107 135 102 115 96 102 135 ...
+ $ referrals_made       : num [1:300] 4 7 4 5 3 4 4 4 5 7 ...
+ $ group_sessions       : num [1:300] 5 1 3 1 5 1 2 1 2 1 ...
+ $ stockout_days        : num [1:300] 0 0 2 2 0 0 0 0 0 0 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   district = col_character(),
+  ..   chw_id = col_character(),
+  ..   month = col_date(format = ""),
+  ..   households_targeted = col_double(),
+  ..   households_visited = col_double(),
+  ..   beneficiaries_reached = col_double(),
+  ..   referrals_made = col_double(),
+  ..   group_sessions = col_double(),
+  ..   stockout_days = col_double()
+  .. )
+ - attr(*, "problems")=&lt;pointer: 0x000001c4867e9de0&gt; </code></pre>
+</div>
+</div>
+<p><strong>4. Which variables are numerical, and which are categorical?</strong></p>
+<ul>
+<li><strong>Numerical</strong>: <code>households_targeted</code>, <code>households_visited</code>, <code>beneficiaries_reached</code>, <code>referrals_made</code>, <code>group_sessions</code>, <code>stockout_days</code></li>
+<li><strong>Categorical</strong>: <code>district</code>, <code>chw_id</code></li>
+<li><code>month</code> is a date.</li>
+</ul>
+<p><strong>5. Can you identify any missing values?</strong></p>
+<p>Yes. I opened the CSV first and tried to spot the missing values by eye, and then loaded it with the <code>na</code> argument shown above. The count of missing values per variable:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(health_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             district                chw_id                 month 
+                    0                     0                     0 
+  households_targeted    households_visited beneficiaries_reached 
+                    0                     0                     0 
+       referrals_made        group_sessions         stockout_days 
+                    4                     3                     0 </code></pre>
+</div>
+</div>
+</section>
+<section id="how-many-community-health-workers-are-there" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="how-many-community-health-workers-are-there"><span class="header-section-number">10.3</span> How many community health workers are there?</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(chw_id) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1    25</code></pre>
+</div>
+</div>
+<p>or</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_workers =</span> <span class="fu">n_distinct</span>(chw_id))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  n_workers
+      &lt;int&gt;
+1        25</code></pre>
+</div>
+</div>
+</section>
+<section id="a-lilongwe-subset" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="a-lilongwe-subset"><span class="header-section-number">10.4</span> A Lilongwe subset</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>lilongwe_data <span class="ot">&lt;-</span> health_data <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(district <span class="sc">==</span> <span class="st">"Lilongwe"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>1. How many rows and columns?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lilongwe_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60  9</code></pre>
+</div>
+</div>
+<p><strong>2. How many workers?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>lilongwe_data <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(chw_id) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1     5</code></pre>
+</div>
+</div>
+<p>or</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>lilongwe_data <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n_workers =</span> <span class="fu">n_distinct</span>(chw_id))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  n_workers
+      &lt;int&gt;
+1         5</code></pre>
+</div>
+</div>
+<p><strong>3. How many months?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lilongwe_data <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      n
+  &lt;int&gt;
+1    12</code></pre>
+</div>
+</div>
+</section>
+<section id="choosing-columns-with-select" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="choosing-columns-with-select"><span class="header-section-number">10.5</span> Choosing columns with <code>select()</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>lilongwe_performance <span class="ot">&lt;-</span> lilongwe_data <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    district,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    chw_id,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    month,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    households_targeted,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    households_visited,</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    beneficiaries_reached</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>1. How many rows and columns does the new object have?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lilongwe_performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60  6</code></pre>
+</div>
+</div>
+<p><strong>2. What happened to the other variables?</strong></p>
+<p>The other 3 variables are dropped in the new object by <code>select()</code>.</p>
+<p><strong>3. Is <code>lilongwe_data</code> still the same?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lilongwe_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 9
+   district chw_id     month      households_targeted households_visited
+   &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+ 1 Lilongwe LIL_CHW_01 2025-01-01                  52                 48
+ 2 Lilongwe LIL_CHW_01 2025-02-01                  46                 43
+ 3 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+ 4 Lilongwe LIL_CHW_01 2025-04-01                  52                 45
+ 5 Lilongwe LIL_CHW_01 2025-05-01                  55                 46
+ 6 Lilongwe LIL_CHW_01 2025-06-01                  52                 50
+ 7 Lilongwe LIL_CHW_01 2025-07-01                  46                 39
+ 8 Lilongwe LIL_CHW_01 2025-08-01                  52                 44
+ 9 Lilongwe LIL_CHW_01 2025-09-01                  43                 36
+10 Lilongwe LIL_CHW_01 2025-10-01                  60                 50
+# ℹ 50 more rows
+# ℹ 4 more variables: beneficiaries_reached &lt;dbl&gt;, referrals_made &lt;dbl&gt;,
+#   group_sessions &lt;dbl&gt;, stockout_days &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Yes, all 9 variables are still there, since that object wasn’t altered.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>lilongwe_performance</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 6
+   district chw_id     month      households_targeted households_visited
+   &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+ 1 Lilongwe LIL_CHW_01 2025-01-01                  52                 48
+ 2 Lilongwe LIL_CHW_01 2025-02-01                  46                 43
+ 3 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+ 4 Lilongwe LIL_CHW_01 2025-04-01                  52                 45
+ 5 Lilongwe LIL_CHW_01 2025-05-01                  55                 46
+ 6 Lilongwe LIL_CHW_01 2025-06-01                  52                 50
+ 7 Lilongwe LIL_CHW_01 2025-07-01                  46                 39
+ 8 Lilongwe LIL_CHW_01 2025-08-01                  52                 44
+ 9 Lilongwe LIL_CHW_01 2025-09-01                  43                 36
+10 Lilongwe LIL_CHW_01 2025-10-01                  60                 50
+# ℹ 50 more rows
+# ℹ 1 more variable: beneficiaries_reached &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="ranking-with-arrange" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="ranking-with-arrange"><span class="header-section-number">10.6</span> Ranking with <code>arrange()</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>lilongwe_ranked <span class="ot">&lt;-</span> lilongwe_performance <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(beneficiaries_reached))</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>lilongwe_ranked</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 6
+   district chw_id     month      households_targeted households_visited
+   &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+ 1 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+ 2 Lilongwe LIL_CHW_02 2025-04-01                  59                 51
+ 3 Lilongwe LIL_CHW_03 2025-05-01                  51                 47
+ 4 Lilongwe LIL_CHW_01 2025-01-01                  52                 48
+ 5 Lilongwe LIL_CHW_01 2025-05-01                  55                 46
+ 6 Lilongwe LIL_CHW_01 2025-10-01                  60                 50
+ 7 Lilongwe LIL_CHW_05 2025-04-01                  54                 43
+ 8 Lilongwe LIL_CHW_02 2025-05-01                  60                 49
+ 9 Lilongwe LIL_CHW_01 2025-12-01                  47                 39
+10 Lilongwe LIL_CHW_03 2025-06-01                  53                 48
+# ℹ 50 more rows
+# ℹ 1 more variable: beneficiaries_reached &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>The worker with the most beneficiaries reached is <code>LIL_CHW_01</code>.</li>
+<li>That was in the month 2025-03-01.</li>
+<li>The number reached was 168.</li>
+</ol>
+<p>The same answer with <code>slice_max()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>lilongwe_performance <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(beneficiaries_reached, <span class="at">n =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 6
+  district chw_id     month      households_targeted households_visited
+  &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+1 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+# ℹ 1 more variable: beneficiaries_reached &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-new-variables-with-mutate" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="creating-new-variables-with-mutate"><span class="header-section-number">10.7</span> Creating new variables with <code>mutate()</code></h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>lilongwe_coverage <span class="ot">&lt;-</span> lilongwe_performance <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coverage_rate =</span> households_visited <span class="sc">/</span> households_targeted <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>lilongwe_coverage</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 7
+   district chw_id     month      households_targeted households_visited
+   &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+ 1 Lilongwe LIL_CHW_01 2025-01-01                  52                 48
+ 2 Lilongwe LIL_CHW_01 2025-02-01                  46                 43
+ 3 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+ 4 Lilongwe LIL_CHW_01 2025-04-01                  52                 45
+ 5 Lilongwe LIL_CHW_01 2025-05-01                  55                 46
+ 6 Lilongwe LIL_CHW_01 2025-06-01                  52                 50
+ 7 Lilongwe LIL_CHW_01 2025-07-01                  46                 39
+ 8 Lilongwe LIL_CHW_01 2025-08-01                  52                 44
+ 9 Lilongwe LIL_CHW_01 2025-09-01                  43                 36
+10 Lilongwe LIL_CHW_01 2025-10-01                  60                 50
+# ℹ 50 more rows
+# ℹ 2 more variables: beneficiaries_reached &lt;dbl&gt;, coverage_rate &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><strong>1. What is the coverage rate for <code>LIL_CHW_01</code> in January 2025?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>lilongwe_coverage <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chw_id <span class="sc">==</span> <span class="st">"LIL_CHW_01"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 7
+   district chw_id     month      households_targeted households_visited
+   &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+ 1 Lilongwe LIL_CHW_01 2025-01-01                  52                 48
+ 2 Lilongwe LIL_CHW_01 2025-02-01                  46                 43
+ 3 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+ 4 Lilongwe LIL_CHW_01 2025-04-01                  52                 45
+ 5 Lilongwe LIL_CHW_01 2025-05-01                  55                 46
+ 6 Lilongwe LIL_CHW_01 2025-06-01                  52                 50
+ 7 Lilongwe LIL_CHW_01 2025-07-01                  46                 39
+ 8 Lilongwe LIL_CHW_01 2025-08-01                  52                 44
+ 9 Lilongwe LIL_CHW_01 2025-09-01                  43                 36
+10 Lilongwe LIL_CHW_01 2025-10-01                  60                 50
+11 Lilongwe LIL_CHW_01 2025-11-01                  39                 34
+12 Lilongwe LIL_CHW_01 2025-12-01                  47                 39
+# ℹ 2 more variables: beneficiaries_reached &lt;dbl&gt;, coverage_rate &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>lilongwe_coverage <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    chw_id <span class="sc">==</span> <span class="st">"LIL_CHW_01"</span>,</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    month <span class="sc">==</span> <span class="st">"2025-01-01"</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 7
+  district chw_id     month      households_targeted households_visited
+  &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+1 Lilongwe LIL_CHW_01 2025-01-01                  52                 48
+# ℹ 2 more variables: beneficiaries_reached &lt;dbl&gt;, coverage_rate &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>The coverage rate is 92.3%.</p>
+<p><strong>2. Which observation has the highest coverage rate?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>lilongwe_coverage <span class="sc">|&gt;</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(coverage_rate, <span class="at">n =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 7
+  district chw_id     month      households_targeted households_visited
+  &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+1 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+# ℹ 2 more variables: beneficiaries_reached &lt;dbl&gt;, coverage_rate &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><strong>3. What does a coverage rate of 100% mean in programme monitoring?</strong></p>
+<p>It means that all the households targeted during that monitoring period were visited.</p>
+</section>
+<section id="grouping-and-summarising" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="grouping-and-summarising"><span class="header-section-number">10.8</span> Grouping and summarising</h2>
+<p>With <code>group_by()</code> and <code>summarise()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>worker_summary <span class="ot">&lt;-</span> lilongwe_coverage <span class="sc">|&gt;</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(chw_id) <span class="sc">|&gt;</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_beneficiaries_reached =</span> <span class="fu">sum</span>(beneficiaries_reached),</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_households_visited =</span> <span class="fu">sum</span>(households_visited),</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_households_targeted =</span> <span class="fu">sum</span>(households_targeted)</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Or you can use <code>.by</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>worker_summary <span class="ot">&lt;-</span> lilongwe_coverage <span class="sc">|&gt;</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_beneficiaries_reached =</span> <span class="fu">sum</span>(beneficiaries_reached),</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_households_visited =</span> <span class="fu">sum</span>(households_visited),</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_households_targeted =</span> <span class="fu">sum</span>(households_targeted),</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> chw_id</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>worker_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  chw_id    total_beneficiaries_…¹ total_households_vis…² total_households_tar…³
+  &lt;chr&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+1 LIL_CHW_…                   1382                    527                    598
+2 LIL_CHW_…                   1163                    450                    581
+3 LIL_CHW_…                   1216                    467                    571
+4 LIL_CHW_…                   1045                    403                    554
+5 LIL_CHW_…                   1210                    484                    636
+# ℹ abbreviated names: ¹​total_beneficiaries_reached, ²​total_households_visited,
+#   ³​total_households_targeted</code></pre>
+</div>
+</div>
+<p><strong>What’s the difference between these two questions?</strong></p>
+<ul>
+<li><em>How many beneficiaries did <code>LIL_CHW_01</code> reach in January?</em></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>lilongwe_coverage <span class="sc">|&gt;</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>    chw_id <span class="sc">==</span> <span class="st">"LIL_CHW_01"</span>,</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    month <span class="sc">==</span> <span class="st">"2025-01-01"</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 7
+  district chw_id     month      households_targeted households_visited
+  &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+1 Lilongwe LIL_CHW_01 2025-01-01                  52                 48
+# ℹ 2 more variables: beneficiaries_reached &lt;dbl&gt;, coverage_rate &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>The answer is 135.</p>
+<ul>
+<li><em>How many beneficiaries did <code>LIL_CHW_01</code> reach throughout the entire year?</em></li>
+</ul>
+<p>The answer is 1,382. The first question looks at one row (one month), and the second adds up all twelve months.</p>
+<p>Average monthly figures per worker:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>worker_averages <span class="ot">&lt;-</span> lilongwe_coverage <span class="sc">|&gt;</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_monthly_beneficiaries_reached =</span> <span class="fu">mean</span>(beneficiaries_reached),</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_monthly_households_visited =</span> <span class="fu">mean</span>(households_visited),</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_monthly_households_targeted =</span> <span class="fu">mean</span>(households_targeted),</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> chw_id</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>worker_averages</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  chw_id    avg_monthly_benefici…¹ avg_monthly_househol…² avg_monthly_househol…³
+  &lt;chr&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+1 LIL_CHW_…                  115.                    43.9                   49.8
+2 LIL_CHW_…                   96.9                   37.5                   48.4
+3 LIL_CHW_…                  101.                    38.9                   47.6
+4 LIL_CHW_…                   87.1                   33.6                   46.2
+5 LIL_CHW_…                  101.                    40.3                   53  
+# ℹ abbreviated names: ¹​avg_monthly_beneficiaries_reached,
+#   ²​avg_monthly_households_visited, ³​avg_monthly_households_targeted</code></pre>
+</div>
+</div>
+<p><strong>Which worker has the highest and lowest average monthly beneficiary reach?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>worker_averages <span class="sc">|&gt;</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_monthly_beneficiaries_reached))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  chw_id    avg_monthly_benefici…¹ avg_monthly_househol…² avg_monthly_househol…³
+  &lt;chr&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+1 LIL_CHW_…                  115.                    43.9                   49.8
+2 LIL_CHW_…                  101.                    38.9                   47.6
+3 LIL_CHW_…                  101.                    40.3                   53  
+4 LIL_CHW_…                   96.9                   37.5                   48.4
+5 LIL_CHW_…                   87.1                   33.6                   46.2
+# ℹ abbreviated names: ¹​avg_monthly_beneficiaries_reached,
+#   ²​avg_monthly_households_visited, ³​avg_monthly_households_targeted</code></pre>
+</div>
+</div>
+<p><code>LIL_CHW_01</code> has the most and <code>LIL_CHW_04</code> has the least.</p>
+</section>
+<section id="counting-and-comparing-districts" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="counting-and-comparing-districts"><span class="header-section-number">10.9</span> Counting and comparing districts</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>district_summary <span class="ot">&lt;-</span> health_data <span class="sc">|&gt;</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_workers =</span> <span class="fu">n_distinct</span>(chw_id),</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_beneficiaries_reached =</span> <span class="fu">sum</span>(beneficiaries_reached),</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_households_visited =</span> <span class="fu">sum</span>(households_visited),</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_households_targeted =</span> <span class="fu">sum</span>(households_targeted),</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> district</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>district_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  district total_workers total_beneficiaries_reached total_households_visited
+  &lt;chr&gt;            &lt;int&gt;                       &lt;dbl&gt;                    &lt;dbl&gt;
+1 Lilongwe             5                        6016                     2331
+2 Blantyre             5                        5620                     2171
+3 Mzimba               5                        4640                     1813
+4 Zomba                5                        5249                     1991
+5 Mangochi             5                        4532                     1741
+# ℹ 1 more variable: total_households_targeted &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><strong>Which district has the highest total beneficiary reach?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>district_summary <span class="sc">|&gt;</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_beneficiaries_reached))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  district total_workers total_beneficiaries_reached total_households_visited
+  &lt;chr&gt;            &lt;int&gt;                       &lt;dbl&gt;                    &lt;dbl&gt;
+1 Lilongwe             5                        6016                     2331
+2 Blantyre             5                        5620                     2171
+3 Zomba                5                        5249                     1991
+4 Mzimba               5                        4640                     1813
+5 Mangochi             5                        4532                     1741
+# ℹ 1 more variable: total_households_targeted &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><strong>Which district has the lowest?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>district_summary <span class="sc">|&gt;</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(total_beneficiaries_reached)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  district total_workers total_beneficiaries_reached total_households_visited
+  &lt;chr&gt;            &lt;int&gt;                       &lt;dbl&gt;                    &lt;dbl&gt;
+1 Mangochi             5                        4532                     1741
+2 Mzimba               5                        4640                     1813
+3 Zomba                5                        5249                     1991
+4 Blantyre             5                        5620                     2171
+5 Lilongwe             5                        6016                     2331
+# ℹ 1 more variable: total_households_targeted &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><strong>Do all five districts have the same number of community health workers?</strong></p>
+<p>Numerically, yes. But in reality, no. For instance, Mangochi has a large number of targeted households (2,909), but those actually reached are fewer (1,741), meaning less coverage.</p>
+<p><strong>What might explain differences in total beneficiaries reached between districts?</strong></p>
+<p>Some districts are fairly large for just 5 workers. They could have a lot of work and large grounds to cover.</p>
+</section>
+<section id="district-coverage-rates" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="district-coverage-rates"><span class="header-section-number">10.10</span> District coverage rates</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>district_performance <span class="ot">&lt;-</span> district_summary <span class="sc">|&gt;</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">coverage_rate =</span> total_households_visited <span class="sc">/</span> total_households_targeted <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(coverage_rate))</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>district_performance</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  district total_workers total_beneficiaries_reached total_households_visited
+  &lt;chr&gt;            &lt;int&gt;                       &lt;dbl&gt;                    &lt;dbl&gt;
+1 Lilongwe             5                        6016                     2331
+2 Blantyre             5                        5620                     2171
+3 Zomba                5                        5249                     1991
+4 Mzimba               5                        4640                     1813
+5 Mangochi             5                        4532                     1741
+# ℹ 2 more variables: total_households_targeted &lt;dbl&gt;, coverage_rate &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p><strong>Which district has the highest household coverage rate?</strong></p>
+<p>Lilongwe, with 79.3%.</p>
+<p><strong>Which has the lowest?</strong></p>
+<p>Mangochi, with 59.8%.</p>
+<p><strong>Is Mangochi necessarily the worst-performing district?</strong></p>
+<p>All the numbers say so, but there could be underlying issues.</p>
+<p><strong>Why is coverage rate a more useful comparison than total beneficiaries reached when assessing household visitation performance?</strong></p>
+<p>Total households visited is an absolute measure. Coverage rate is a relative measure: it takes into account how many households each district was supposed to visit.</p>
+</section>
+<section id="missing-values-and-data-quality" class="level2" data-number="10.11">
+<h2 data-number="10.11" class="anchored" data-anchor-id="missing-values-and-data-quality"><span class="header-section-number">10.11</span> Missing values and data quality</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(health_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             district                chw_id                 month 
+                    0                     0                     0 
+  households_targeted    households_visited beneficiaries_reached 
+                    0                     0                     0 
+       referrals_made        group_sessions         stockout_days 
+                    4                     3                     0 </code></pre>
+</div>
+</div>
+<p><strong>Which variables contain missing values?</strong></p>
+<p><code>group_sessions</code> and <code>referrals_made</code>.</p>
+<p><strong>How many missing values does each variable have?</strong></p>
+<p>3 and 4 (the output above shows which is which).</p>
+<p><strong>How many missing values are there altogether?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(health_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<p>There are 7.</p>
+<p>Knowing that <code>referrals_made</code> has missing values is useful, but we also want to know which records are incomplete.</p>
+<p><strong>Which community health workers are associated with the missing referral records?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(referrals_made)) <span class="sc">|&gt;</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(chw_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+  chw_id    
+  &lt;chr&gt;     
+1 MZI_CHW_02
+2 MZI_CHW_03
+3 ZOM_CHW_02
+4 ZOM_CHW_03</code></pre>
+</div>
+</div>
+<p><strong>Which districts have missing referral records?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(referrals_made)) <span class="sc">|&gt;</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(district)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  district
+  &lt;chr&gt;   
+1 Mzimba  
+2 Zomba   </code></pre>
+</div>
+</div>
+<p><strong>Which months are affected?</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(referrals_made)) <span class="sc">|&gt;</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(month)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+  month     
+  &lt;date&gt;    
+1 2025-03-01
+2 2025-06-01
+3 2025-10-01
+4 2025-04-01</code></pre>
+</div>
+</div>
+<p>All three together:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(referrals_made)) <span class="sc">|&gt;</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(district, chw_id, month)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  district chw_id     month     
+  &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;    
+1 Mzimba   MZI_CHW_02 2025-03-01
+2 Mzimba   MZI_CHW_03 2025-06-01
+3 Zomba    ZOM_CHW_02 2025-10-01
+4 Zomba    ZOM_CHW_03 2025-04-01</code></pre>
+</div>
+</div>
+</section>
+<section id="plotting-district-coverage" class="level2" data-number="10.12">
+<h2 data-number="10.12" class="anchored" data-anchor-id="plotting-district-coverage"><span class="header-section-number">10.12</span> Plotting district coverage</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>district_performance</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  district total_workers total_beneficiaries_reached total_households_visited
+  &lt;chr&gt;            &lt;int&gt;                       &lt;dbl&gt;                    &lt;dbl&gt;
+1 Lilongwe             5                        6016                     2331
+2 Blantyre             5                        5620                     2171
+3 Zomba                5                        5249                     1991
+4 Mzimba               5                        4640                     1813
+5 Mangochi             5                        4532                     1741
+# ℹ 2 more variables: total_households_targeted &lt;dbl&gt;, coverage_rate &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>A bar chart of household coverage by district, with labels:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>  district_performance,</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="fu">reorder</span>(district, coverage_rate), coverage_rate)</span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"tomato"</span>) <span class="sc">+</span></span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Household Coverage by District"</span>,</span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Household Coverage (%)"</span>,</span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"District"</span></span>
+<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb87-11"><a href="#cb87-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb87-12"><a href="#cb87-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(coverage_rate, <span class="at">digits =</span> <span class="dv">1</span>)),</span>
+<span id="cb87-13"><a href="#cb87-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span></span>
+<span id="cb87-14"><a href="#cb87-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb87-15"><a href="#cb87-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-small-exercise_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In descending order, with the district names tilted in case they overlap:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  district_performance,</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(district, <span class="sc">-</span>coverage_rate), <span class="at">y =</span> coverage_rate)</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"firebrick"</span>) <span class="sc">+</span></span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Household Coverage by District"</span>,</span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Household Coverage (%)"</span>,</span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"District"</span></span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-small-exercise_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>With the y-axis fixed from 0 to 100, so the bars aren’t exaggerated:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>  district_performance,</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="fu">reorder</span>(district, coverage_rate), coverage_rate)</span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"firebrick"</span>) <span class="sc">+</span></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Household Coverage by District"</span>,</span>
+<span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Household Coverage (%)"</span>,</span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"District"</span></span>
+<span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(coverage_rate, <span class="at">digits =</span> <span class="dv">1</span>)),</span>
+<span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span></span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">20</span>)</span>
+<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-small-exercise_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="coverage-over-time" class="level2" data-number="10.13">
+<h2 data-number="10.13" class="anchored" data-anchor-id="coverage-over-time"><span class="header-section-number">10.13</span> Coverage over time</h2>
+<p><em>How has household coverage changed over the 12 months of 2025 in each district?</em></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>monthly_district_performance <span class="ot">&lt;-</span> health_data <span class="sc">|&gt;</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(district, month) <span class="sc">|&gt;</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_workers =</span> <span class="fu">n_distinct</span>(chw_id),</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_beneficiaries_reached =</span> <span class="fu">sum</span>(beneficiaries_reached),</span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_households_visited =</span> <span class="fu">sum</span>(households_visited),</span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_households_targeted =</span> <span class="fu">sum</span>(households_targeted),</span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb90-11"><a href="#cb90-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">monthly_coverage =</span> total_households_visited <span class="sc">/</span> total_households_targeted <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb90-12"><a href="#cb90-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Checking that the result is ungrouped (because of <code>.groups = "drop"</code>):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is_grouped_df</span>(monthly_district_performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(monthly_district_performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60  7</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(monthly_district_performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  district month      total_workers total_beneficiaries_reached
+  &lt;chr&gt;    &lt;date&gt;             &lt;int&gt;                       &lt;dbl&gt;
+1 Blantyre 2025-01-01             5                         484
+2 Blantyre 2025-02-01             5                         436
+3 Blantyre 2025-03-01             5                         482
+4 Blantyre 2025-04-01             5                         444
+5 Blantyre 2025-05-01             5                         486
+6 Blantyre 2025-06-01             5                         505
+# ℹ 3 more variables: total_households_visited &lt;dbl&gt;,
+#   total_households_targeted &lt;dbl&gt;, monthly_coverage &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>  monthly_district_performance,</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(month, monthly_coverage, <span class="at">colour =</span> district)</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> district)) <span class="sc">+</span></span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"District Monthly Coverage"</span>,</span>
+<span id="cb97-10"><a href="#cb97-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Monthly Coverage (%)"</span>,</span>
+<span id="cb97-11"><a href="#cb97-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Month"</span>,</span>
+<span id="cb97-12"><a href="#cb97-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"District"</span></span>
+<span id="cb97-13"><a href="#cb97-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb97-14"><a href="#cb97-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-small-exercise_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The same plot with thicker lines and bigger points, which is easier to read:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>  monthly_district_performance,</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(month, monthly_coverage, <span class="at">colour =</span> district)</span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> district), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.6</span>) <span class="sc">+</span></span>
+<span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">20</span>)) <span class="sc">+</span></span>
+<span id="cb98-8"><a href="#cb98-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb98-9"><a href="#cb98-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"District Monthly Coverage"</span>,</span>
+<span id="cb98-10"><a href="#cb98-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Monthly Coverage (%)"</span>,</span>
+<span id="cb98-11"><a href="#cb98-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Month"</span>,</span>
+<span id="cb98-12"><a href="#cb98-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"District"</span></span>
+<span id="cb98-13"><a href="#cb98-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb98-14"><a href="#cb98-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-small-exercise_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>monthly_district_performance</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 7
+   district month      total_workers total_beneficiaries_reached
+   &lt;chr&gt;    &lt;date&gt;             &lt;int&gt;                       &lt;dbl&gt;
+ 1 Blantyre 2025-01-01             5                         484
+ 2 Blantyre 2025-02-01             5                         436
+ 3 Blantyre 2025-03-01             5                         482
+ 4 Blantyre 2025-04-01             5                         444
+ 5 Blantyre 2025-05-01             5                         486
+ 6 Blantyre 2025-06-01             5                         505
+ 7 Blantyre 2025-07-01             5                         429
+ 8 Blantyre 2025-08-01             5                         499
+ 9 Blantyre 2025-09-01             5                         369
+10 Blantyre 2025-10-01             5                         624
+# ℹ 50 more rows
+# ℹ 3 more variables: total_households_visited &lt;dbl&gt;,
+#   total_households_targeted &lt;dbl&gt;, monthly_coverage &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>My observations:</p>
+<ol type="1">
+<li>Overall, Blantyre seems to have the best monthly coverage, even though it does lose out to Lilongwe over the final couple of months.</li>
+<li>Mangochi has the lowest of the five districts.</li>
+<li>For some reason, approximately between the months of April and August, all districts show a dip in their monthly coverage. The data doesn’t say why, so I can’t speculate.</li>
+</ol>
+</section>
+<section id="the-overall-monthly-trend" class="level2" data-number="10.14">
+<h2 data-number="10.14" class="anchored" data-anchor-id="the-overall-monthly-trend"><span class="header-section-number">10.14</span> The overall monthly trend</h2>
+<p>A summary showing the average monthly coverage across all five districts, from January to December:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>monthly_district_performance <span class="sc">|&gt;</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">average_monthly_coverage =</span> <span class="fu">mean</span>(monthly_coverage),</span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> month</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   month      average_monthly_coverage
+   &lt;date&gt;                        &lt;dbl&gt;
+ 1 2025-01-01                     72.1
+ 2 2025-02-01                     71.6
+ 3 2025-03-01                     77.9
+ 4 2025-04-01                     76.0
+ 5 2025-05-01                     71.6
+ 6 2025-06-01                     73.8
+ 7 2025-07-01                     70.3
+ 8 2025-08-01                     68.5
+ 9 2025-09-01                     63.7
+10 2025-10-01                     67.0
+11 2025-11-01                     65.7
+12 2025-12-01                     67.0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>overall_monthly_performance <span class="ot">&lt;-</span> monthly_district_performance <span class="sc">|&gt;</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">average_monthly_coverage =</span> <span class="fu">mean</span>(monthly_coverage),</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> month</span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>  overall_monthly_performance,</span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(month, average_monthly_coverage)</span>
+<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb104-7"><a href="#cb104-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb104-8"><a href="#cb104-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb104-9"><a href="#cb104-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Monthly Household Coverage Trend, 2025"</span>,</span>
+<span id="cb104-10"><a href="#cb104-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Average Monthly Coverage (%)"</span>,</span>
+<span id="cb104-11"><a href="#cb104-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Month"</span></span>
+<span id="cb104-12"><a href="#cb104-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="small-small-exercise_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <strong>weighted</strong> overall monthly coverage, calculated from <code>monthly_district_performance</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>monthly_district_performance <span class="sc">|&gt;</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_targeted =</span> <span class="fu">sum</span>(total_households_targeted),</span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_visited =</span> <span class="fu">sum</span>(total_households_visited),</span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">overall_coverage =</span> total_visited <span class="sc">/</span> total_targeted <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   month      total_targeted total_visited overall_coverage
+   &lt;date&gt;              &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
+ 1 2025-01-01           1213           879             72.5
+ 2 2025-02-01           1134           810             71.4
+ 3 2025-03-01           1191           927             77.8
+ 4 2025-04-01           1173           890             75.9
+ 5 2025-05-01           1218           873             71.7
+ 6 2025-06-01           1200           882             73.5
+ 7 2025-07-01           1191           835             70.1
+ 8 2025-08-01           1260           859             68.2
+ 9 2025-09-01           1240           791             63.8
+10 2025-10-01           1217           822             67.5
+11 2025-11-01           1123           735             65.4
+12 2025-12-01           1105           744             67.3</code></pre>
+</div>
+</div>
+</section>
+<section id="data-quality-checks" class="level2" data-number="10.15">
+<h2 data-number="10.15" class="anchored" data-anchor-id="data-quality-checks"><span class="header-section-number">10.15</span> Data quality checks</h2>
+<p>Households visited should never be more than households targeted:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(households_visited <span class="sc">&gt;</span> households_targeted)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 9
+# ℹ 9 variables: district &lt;chr&gt;, chw_id &lt;chr&gt;, month &lt;date&gt;,
+#   households_targeted &lt;dbl&gt;, households_visited &lt;dbl&gt;,
+#   beneficiaries_reached &lt;dbl&gt;, referrals_made &lt;dbl&gt;, group_sessions &lt;dbl&gt;,
+#   stockout_days &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Beneficiaries reached should never be negative:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(beneficiaries_reached <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 9
+# ℹ 9 variables: district &lt;chr&gt;, chw_id &lt;chr&gt;, month &lt;date&gt;,
+#   households_targeted &lt;dbl&gt;, households_visited &lt;dbl&gt;,
+#   beneficiaries_reached &lt;dbl&gt;, referrals_made &lt;dbl&gt;, group_sessions &lt;dbl&gt;,
+#   stockout_days &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Stockout days can’t be more than the number of days in the month:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stockout_days <span class="sc">&gt;</span> <span class="fu">days_in_month</span>(month))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 9
+# ℹ 9 variables: district &lt;chr&gt;, chw_id &lt;chr&gt;, month &lt;date&gt;,
+#   households_targeted &lt;dbl&gt;, households_visited &lt;dbl&gt;,
+#   beneficiaries_reached &lt;dbl&gt;, referrals_made &lt;dbl&gt;, group_sessions &lt;dbl&gt;,
+#   stockout_days &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>And which records had any stockout days at all:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>health_data <span class="sc">|&gt;</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stockout_days <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 96 × 9
+   district chw_id     month      households_targeted households_visited
+   &lt;chr&gt;    &lt;chr&gt;      &lt;date&gt;                   &lt;dbl&gt;              &lt;dbl&gt;
+ 1 Lilongwe LIL_CHW_01 2025-03-01                  54                 53
+ 2 Lilongwe LIL_CHW_01 2025-04-01                  52                 45
+ 3 Lilongwe LIL_CHW_02 2025-01-01                  42                 36
+ 4 Lilongwe LIL_CHW_02 2025-03-01                  60                 53
+ 5 Lilongwe LIL_CHW_02 2025-05-01                  60                 49
+ 6 Lilongwe LIL_CHW_02 2025-06-01                  55                 37
+ 7 Lilongwe LIL_CHW_03 2025-01-01                  59                 45
+ 8 Lilongwe LIL_CHW_03 2025-07-01                  53                 41
+ 9 Lilongwe LIL_CHW_03 2025-09-01                  47                 34
+10 Lilongwe LIL_CHW_04 2025-06-01                  35                 30
+# ℹ 86 more rows
+# ℹ 4 more variables: beneficiaries_reached &lt;dbl&gt;, referrals_made &lt;dbl&gt;,
+#   group_sessions &lt;dbl&gt;, stockout_days &lt;dbl&gt;</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./layers.html" class="pagination-link" aria-label="Layers">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Layers</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
